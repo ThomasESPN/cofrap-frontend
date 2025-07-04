@@ -1,10 +1,6 @@
 import { AuthResponse, GeneratePasswordResponse, Generate2FAResponse } from '../types';
 
-// Configuration automatique dev/production
-const isDevelopment = import.meta.env.DEV;
-const API_BASE_URL = isDevelopment 
-  ? '/api' // En développement, utilise le proxy Vite
-  : 'http://34.79.63.215:8080/function'; // En production, URL directe vers OpenFaaS
+const API_BASE_URL = '/api'; // Using proxy to avoid CORS issues
 
 export const apiService = {
   async generatePasswordQRCode(username: string): Promise<GeneratePasswordResponse> {
